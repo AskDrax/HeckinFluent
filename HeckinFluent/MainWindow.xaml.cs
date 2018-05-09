@@ -24,5 +24,10 @@ namespace HeckinFluent
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            HeckinAcrylic.EnableCompositionBlur();
+        }
     }
 }

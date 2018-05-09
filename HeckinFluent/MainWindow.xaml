@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HeckinFluent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" MinHeight="320" MinWidth="480" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded">
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight ="26"
+            ResizeBorderThickness="5"
+            />
+    </WindowChrome.WindowChrome>
+    <Grid x:Name="MainGrid" Margin="1,1,1,1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="WholeWindowBorder" Grid.Row="0" Grid.RowSpan="2" Margin="-1,-1,-1,-1" Background="Transparent" BorderThickness="1" CornerRadius="3,3,0,0">
+            <Border.BorderBrush>
+                <RadialGradientBrush SpreadMethod="Repeat" Opacity="0.1">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Offset="1" Color="Black"/>
+                    <GradientStop Offset="0.5"/>
+                </RadialGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Border x:Name="CaptionBorder" Grid.Row="0" CornerRadius="2,2,0,0" Background="#40AAF5FF"/>
+        <Border x:Name="ClientBorder" Grid.Row="1" BorderThickness="5,0,5,5">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#882F4F4F" Offset="1"/>
+                    <GradientStop Color="#40AAF5FF"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border x:Name="ContentBorder" Grid.Row="1" Background="#EE2B2B2B" BorderThickness="3" BorderBrush="#FF2B2B2B">
+
+            </Border>
+        </Border>
     </Grid>
 </Window>
