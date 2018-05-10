@@ -29,5 +29,17 @@ namespace HeckinFluent
         {
             HeckinAcrylic.EnableCompositionBlur();
         }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            //Point mousePos = Mouse.GetPosition(Mouse.PrimaryDevice.DirectlyOver);
+            Point mousePos = Mouse.GetPosition(Application.Current.MainWindow);
+            double centeredPos = mousePos.X - (Application.Current.MainWindow.ActualWidth / 2);
+            MouseText.Text = "Mouse is at: X = " + centeredPos.ToString();
+
+            //Application.Current.MainWindow.
+
+            
+        }
     }
 }

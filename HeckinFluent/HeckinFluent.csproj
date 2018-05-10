@@ -101,5 +101,12 @@
   <ItemGroup>
     <Folder Include="Controls\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\InnerShadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AltInnerShadow.png" />
+    <Resource Include="Images\CrazyCrackly.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
