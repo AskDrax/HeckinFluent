@@ -34,85 +34,184 @@
                     <GradientStop Color="#40AAF5FF"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-            <Border x:Name="ContentBorder" Grid.Row="1" BorderThickness="0,0,0,0">
-                <Border.Background>
-                    <ImageBrush ImageSource="Images/InnerShadow.png" Opacity="0.2"/>
-                </Border.Background>
-                <Grid x:Name="ContentGrid" Grid.Row="1">
-                    <Viewport3D x:Name="viewport3D" Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Viewport3D.Camera>
-                            <!--
+            <Grid x:Name="ContentGrid">
+                <Border x:Name="OuterContentBorder" BorderThickness="0" Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <!--
+                    <Border.Background>
+                        <ImageBrush x:Name="SandyImage" ImageSource="Images/sandy.jpg" Opacity="1.0" Stretch="UniformToFill"/>
+                    </Border.Background>
+                    -->
+                    <Border x:Name="ContentBorder" BorderThickness="0,0,0,0" Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Border.Background>
+                            <ImageBrush ImageSource="Images/InnerShadow.png" Opacity="0.5"/>
+                        </Border.Background>
+                        
+                    </Border>
+                </Border>
+
+                <Viewport3D x:Name="viewport3D" Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Viewport3D.Camera>
+                        <!--
                             <OrthographicCamera Position="0,0,2" LookDirection="0,0,-1" UpDirection="0,1,0" />
                             -->
-                            <PerspectiveCamera Position="0,0,2" LookDirection="0,0,-1" UpDirection="0,1,0" FieldOfView="60"/>
-                        </Viewport3D.Camera>
-                        <ModelVisual3D>
-                            <ModelVisual3D.Content>
-                                <AmbientLight Color="#FFFFFF"/>
-                            </ModelVisual3D.Content>
-                        </ModelVisual3D>
-                        <ModelVisual3D>
-                            <ModelVisual3D.Content>
-                                <GeometryModel3D>
+                        <PerspectiveCamera x:Name="TheCamera" Position="0,0,3" LookDirection="0,0,-1.0" UpDirection="0,1,0" FieldOfView="40"/>
 
-                                    <!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. -->
-                                    <GeometryModel3D.Geometry>
-                                        <MeshGeometry3D
+                    </Viewport3D.Camera>
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <AmbientLight Color="#FFFFFF"/>
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                    
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <GeometryModel3D>
+
+                                <!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. -->
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D
                                                 TriangleIndices="0,1,2 1,3,2"
                                                 Normals="0,0,1 0,0,1 0,0,1 0,0,1"
                                                 TextureCoordinates="0,1 1,1 0,0 1,0"
                                                 Positions="-1,-1,0 1,-1,0 -1,1,0 1,1,0"
                                                 />
-                                    </GeometryModel3D.Geometry>
+                                </GeometryModel3D.Geometry>
 
-                                    <!-- The material specifies the material applied to the 3D object. In this sample a linear gradient 
+                                <!-- The material specifies the material applied to the 3D object. In this sample a linear gradient 
                        covers the surface of the 3D object.-->
-                                    <GeometryModel3D.Material>
-                                        <MaterialGroup>
-                                            <DiffuseMaterial>
-                                                <DiffuseMaterial.Brush>
-                                                    <VisualBrush Stretch="Uniform"  Visual="{Binding ElementName=InputTextBox}"/>
-                                                </DiffuseMaterial.Brush>
-                                                <!--
-                                                    <DiffuseMaterial.Brush>
-                                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                                            <LinearGradientBrush.GradientStops>
-                                                                <GradientStop Color="Yellow" Offset="0" />
-                                                                <GradientStop Color="Red" Offset="0.25" />
-                                                                <GradientStop Color="Blue" Offset="0.75" />
-                                                                <GradientStop Color="LimeGreen" Offset="1" />
-                                                            </LinearGradientBrush.GradientStops>
-                                                        </LinearGradientBrush>
-                                                    </DiffuseMaterial.Brush>
-                                                    -->
-                                            </DiffuseMaterial>
-                                        </MaterialGroup>
-                                    </GeometryModel3D.Material>
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial>
+                                            <DiffuseMaterial.Brush>
+                                                <VisualBrush Stretch="Fill" /> <!--</VisualBrush>Visual="{Binding ElementName=OuterContentBorder}"-->
+                                                    
+                                            </DiffuseMaterial.Brush>
+                                        </DiffuseMaterial>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
 
-                                    <!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 
-                       3D object rotated. --> 
-                                    <GeometryModel3D.Transform>
-                                        <Transform3DGroup>
-                                            <Transform3DGroup.Children>
-                                                <TranslateTransform3D x:Name="ZTransform" OffsetZ="0"/>
-                                                <RotateTransform3D>
-                                                    <RotateTransform3D.Rotation>
-                                                        <AxisAngleRotation3D x:Name="RotationTransform" Axis="0,3,0" Angle="0" />
-                                                    </RotateTransform3D.Rotation>
-                                                </RotateTransform3D>
-                                            </Transform3DGroup.Children>
-                                        </Transform3DGroup>
-                                        
-                                    </GeometryModel3D.Transform>
-                                </GeometryModel3D>
-                            </ModelVisual3D.Content>
-                        </ModelVisual3D>
-                    </Viewport3D>
-                    <TextBox x:Name="InputTextBox" Height="46" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" Margin="10,0,0,5"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="240" Background="#FF212121" BorderBrush="#FFFADE59" CaretBrush="#FFC5FF71" Foreground="#FFC5FF71" SelectionBrush="#FFFADE59"/>
-                    <TextBlock x:Name="MouseText" Margin="0,0,60,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="#FFFAFF90" FontFamily="Segoe UI Semibold" FontSize="18"><Run Text="Mouse is at:"/></TextBlock>
-                </Grid>
+                                <!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 
+                       3D object rotated. -->
+                                <GeometryModel3D.Transform>
+                                    <Transform3DGroup>
+                                        <TranslateTransform3D x:Name="SkyBGTransformZ" OffsetZ="{Binding SkyBGSlideZ}"/>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="SkyBGRotationX" Axis="0,3,0" Angle="{Binding SkyBGTiltX}"/>
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <TranslateTransform3D x:Name="SkyBGTransformX" OffsetY="{Binding SkyBGSlideX}"/>
+                                        <TranslateTransform3D x:Name="SkyBGTransformY" OffsetY="{Binding SkyBGSlideY}"/>
+                                    </Transform3DGroup>
 
-            </Border>
+                                </GeometryModel3D.Transform>
+                            </GeometryModel3D>
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <GeometryModel3D>
+
+                                <!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. -->
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D
+                                                TriangleIndices="0,1,2 1,3,2"
+                                                Normals="0,0,1 0,0,1 0,0,1 0,0,1"
+                                                TextureCoordinates="0,1 1,1 0,0 1,0"
+                                                Positions="-1,-1,0 1,-1,0 -1,1,0 1,1,0"
+                                                />
+                                </GeometryModel3D.Geometry>
+
+                                <!-- The material specifies the material applied to the 3D object. In this sample a linear gradient 
+                       covers the surface of the 3D object.-->
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial>
+                                            <DiffuseMaterial.Brush>
+                                                <VisualBrush Stretch="Uniform" />
+                                                <!--="{Binding ElementName=ContentBorder}" -->
+                                            </DiffuseMaterial.Brush>
+                                        </DiffuseMaterial>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
+
+                                <!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 
+                       3D object rotated. -->
+                                <GeometryModel3D.Transform>
+                                    <Transform3DGroup>
+                                        <TranslateTransform3D x:Name="BGTransformZ" OffsetZ="{Binding BGSlideZ}"/>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="BGRotationX" Axis="0,3,0" Angle="{Binding BGTiltX}"/>
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <TranslateTransform3D x:Name="BGTransformX" OffsetY="{Binding BGSlideX}"/>
+                                        <TranslateTransform3D x:Name="BGTransformY" OffsetY="{Binding SlideY}"/>
+                                    </Transform3DGroup>
+
+                                </GeometryModel3D.Transform>
+                            </GeometryModel3D>
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                    <ModelVisual3D>
+                        <ModelVisual3D.Content>
+                            <GeometryModel3D>
+
+                                <!-- The geometry specifies the shape of the 3D plane. In this sample, a flat sheet is created. -->
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D
+                                                TriangleIndices="0,1,2 1,3,2"
+                                                Normals="0,0,1 0,0,1 0,0,1 0,0,1"
+                                                TextureCoordinates="0,1 1,1 0,0 1,0"
+                                                Positions="-1,-1,0 1,-1,0 -1,1,0 1,1,0"
+                                                />
+                                </GeometryModel3D.Geometry>
+
+                                <!-- The material specifies the material applied to the 3D object. In this sample a linear gradient 
+                       covers the surface of the 3D object.-->
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial>
+                                            <DiffuseMaterial.Brush>
+                                                <VisualBrush Stretch="Uniform" Visual="{Binding ElementName=InputTextBoxBorder}"/>
+                                            </DiffuseMaterial.Brush>
+                                        </DiffuseMaterial>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
+
+                                <!-- Apply a transform to the object. In this sample, a rotation transform is applied, rendering the 
+                       3D object rotated. -->
+                                <GeometryModel3D.Transform>
+                                    <Transform3DGroup>
+                                        <RotateTransform3D>
+                                            <RotateTransform3D.Rotation>
+                                                <AxisAngleRotation3D x:Name="RotationX" Axis="0,3,0" Angle="{Binding TiltX}"/>
+                                            </RotateTransform3D.Rotation>
+                                        </RotateTransform3D>
+                                        <TranslateTransform3D x:Name="TransformZ" OffsetZ="{Binding SlideZ}"/>
+                                        <TranslateTransform3D x:Name="TransformY" OffsetY="{Binding SlideY}"/>
+                                    </Transform3DGroup>
+
+                                </GeometryModel3D.Transform>
+                            </GeometryModel3D>
+                        </ModelVisual3D.Content>
+                    </ModelVisual3D>
+                </Viewport3D>
+                <Border x:Name="InputTextBoxBorder" Margin="10,0,0,5" CornerRadius="0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="50" Width="240" BorderThickness="2">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/AltInnerShadow.png" Opacity="0.2"/>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                            <GradientStop Color="#882F4F4F" Offset="1"/>
+                            <GradientStop Color="#40AAF5FF"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <TextBox x:Name="InputTextBox" TextWrapping="Wrap" Text="TextBox" Margin="0,0,0,0" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CaretBrush="#FFC5FF71" Foreground="#FFC5FF71" SelectionBrush="#FFFADE59" Background="#BB212121" AcceptsReturn="True"/>
+                </Border>
+
+                <TextBlock x:Name="MouseText" Margin="0,0,60,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="#FFFAFF90" FontFamily="Segoe UI Semibold" FontSize="18"><Run Text="Mouse is at:"/></TextBlock>
+            </Grid>
         </Border>
     </Grid>
 </Window>
